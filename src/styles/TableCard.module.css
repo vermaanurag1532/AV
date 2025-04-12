@@ -1,0 +1,918 @@
+/* Modal Styling */
+.detailsModal {
+    --modal-backdrop-filter: blur(8px);
+    --modal-backdrop-opacity: 0.8;
+  }
+  
+  .modalHeader {
+    background: linear-gradient(to right, #e0f2fe, #bae6fd);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .modalHeaderContent {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .modalTableLabel {
+    background: #0ea5e9;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modalTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0c4a6e;
+  }
+  
+  .modalBody {
+    padding: 1.5rem;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  
+  .modalFooter {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    background: #f8fafc;
+  }
+  
+  .closeButton {
+    transition: all 0.3s ease;
+  }
+  
+  .closeButton:hover {
+    transform: translateY(-2px);
+  }
+  
+  .loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+  }
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid rgba(14, 165, 233, 0.2);
+    border-top-color: #0ea5e9;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .sectionTitle {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0c4a6e;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e0f2fe;
+  }
+  
+  .sectionIcon {
+    margin-right: 0.7rem;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  }
+  
+  .customerSection, .orderSection {
+    margin-bottom: 1.5rem;
+    animation: fadeSlideUp 0.5s ease;
+  }
+  
+  @keyframes fadeSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .customerHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .customerAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #60a5fa, #3b82f6);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+  }
+  
+  .customerNameBadge {
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+  }
+  
+  .contactInfo {
+    margin-top: 0.5rem;
+  }
+  
+  .detailCard {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 1.25rem;
+    border: 1px solid #e0f2fe;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+  }
+  
+  .detailCard:hover {
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+  
+  .detailRow {
+    display: flex;
+    margin-bottom: 0.75rem;
+    align-items: center;
+  }
+  
+  .detailLabel {
+    font-weight: 600;
+    color: #64748b;
+    min-width: 80px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .detailIcon {
+    margin-right: 2px;
+  }
+  
+  .detailValue {
+    color: #0f172a;
+    flex: 1;
+    font-weight: 500;
+  }
+  
+  .divider {
+    margin: 1.5rem 0;
+    background: #e0f2fe;
+    height: 2px;
+  }
+  
+  .orderHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .orderIdBadge {
+    background: #ffe4e6;
+    color: #be123c;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 4px rgba(244, 63, 94, 0.2);
+  }
+  
+  .orderTimeBadge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f1f5f9;
+    color: #475569;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  
+  .timeIcon {
+    margin-right: 2px;
+  }
+  
+  .orderSummary {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .summaryItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .summaryItem:hover {
+    transform: translateX(5px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  }
+  
+  .summaryIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: #f8fafc;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .summaryText {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .summaryLabel {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-bottom: 0.1rem;
+  }
+  
+  .summaryValue {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #0f172a;
+  }
+  
+  .paidValue {
+    color: #059669;
+  }
+  
+  .unpaidValue {
+    color: #dc2626;
+  }
+  
+  .servedValue {
+    color: #059669;
+  }
+  
+  .preparingValue {
+    color: #eab308;
+  }
+  
+  .itemsTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0c4a6e;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed #cbd5e1;
+  }
+  
+  .itemsIcon {
+    margin-right: 4px;
+  }
+  
+  .itemsList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .orderItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    transition: all 0.3s ease;
+  }
+  
+  .orderItem:hover {
+    background: #f8fafc;
+    transform: translateX(5px);
+  }
+  
+  .orderItem:last-child {
+    border-bottom: none;
+  }
+  
+  .itemDetails {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .itemIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .dishName {
+    font-weight: 500;
+    color: #0f172a;
+  }
+  
+  .quantityBadge {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 0.25rem 0.5rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  
+  .noOrderMessage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2.5rem;
+  }
+  .tableCard {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .tableCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 50%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  .occupiedTable {
+    background: linear-gradient(135deg, #fecaca 0%, #f87171 100%);
+    cursor: pointer;
+  }
+  
+  .availableTable {
+    background: linear-gradient(135deg, #bbf7d0 0%, #4ade80 100%);
+  }
+  
+  .tableCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.12);
+  }
+  
+  .tableCard:hover .tablePlate {
+    transform: translateY(-10px) rotate(10deg);
+  }
+  
+  .tableTop {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+  }
+  
+  .tableNumber {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  .tableNumber::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+  }
+  
+  .tableCard:hover .tableNumber::after {
+    width: 100%;
+  }
+  
+  .statusIndicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    position: relative;
+  }
+  
+  .occupied {
+    background-color: #dc2626;
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.3);
+    animation: pulseRed 2s infinite;
+  }
+  
+  .available {
+    background-color: #16a34a;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.3);
+    animation: pulseGreen 2s infinite;
+  }
+  
+  @keyframes pulseRed {
+    0% {
+      box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 6px rgba(220, 38, 38, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+    }
+  }
+  
+  @keyframes pulseGreen {
+    0% {
+      box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 6px rgba(22, 163, 74, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+    }
+  }
+  
+  .tableCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    z-index: 2;
+  }
+  
+  .tablePlateContainer {
+    position: relative;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+  }
+  
+  .tablePlate {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+  }
+  
+  .plateInner {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 2px solid rgba(203, 213, 225, 0.5);
+  }
+  
+  .utensils {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    pointer-events: none;
+  }
+  
+  .fork {
+    position: absolute;
+    top: -20px;
+    left: 5px;
+    width: 3px;
+    height: 40px;
+    background: #94a3b8;
+    border-radius: 1px;
+    transform: rotate(-15deg);
+  }
+  
+  .fork::before, .fork::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    width: 3px;
+    height: 25px;
+    background: #94a3b8;
+    border-radius: 1px;
+  }
+  
+  .fork::before {
+    left: -6px;
+    transform: rotate(-10deg);
+  }
+  
+  .fork::after {
+    left: 6px;
+    transform: rotate(10deg);
+  }
+  
+  .knife {
+    position: absolute;
+    top: -20px;
+    right: 5px;
+    width: 5px;
+    height: 40px;
+    background: #94a3b8;
+    border-radius: 1px;
+    transform: rotate(15deg);
+  }
+  
+  .knife::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -2px;
+    width: 8px;
+    height: 30px;
+    background: #94a3b8;
+    border-radius: 5px 5px 0 5px;
+    transform: skewY(-5deg);
+  }
+  
+  .foodSvg {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.2));
+    opacity: 0;
+    animation: fadeInFood 1s ease forwards 0.5s;
+  }
+  
+  @keyframes fadeInFood {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) scale(0.7);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+    }
+  }
+  
+  .tableBottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 2;
+  }
+  
+  .statusText {
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+  }
+  
+  .occupiedInfo {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    padding: 8px 12px;
+    width: 100%;
+    margin-top: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    animation: slideUp 0.5s ease forwards;
+    transform-origin: bottom;
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  .tableCard:hover .occupiedInfo {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.03);
+  }
+  
+  .infoRow {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+  
+  .infoIcon {
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+  }
+  
+  .viewButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.25);
+    border: none;
+    border-radius: 20px;
+    padding: 6px 12px;
+    width: 100%;
+    margin-top: 5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .viewButton:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+  }
+  
+  .buttonIcon {
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.2));
+    transition: all 0.3s ease;
+  }
+  
+  .viewButton:hover .buttonIcon {
+    transform: rotate(15deg);
+  }
+  
+  /* Modal Styling */
+  .detailsModal {
+    --modal-backdrop-filter: blur(8px);
+    --modal-backdrop-opacity: 0.8;
+  }
+  
+  .modalHeader {
+    background: linear-gradient(to right, #e0f2fe, #bae6fd);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .modalHeaderContent {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .modalTableLabel {
+    background: #0ea5e9;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 700;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modalTitle {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #0c4a6e;
+  }
+  
+  .modalBody {
+    padding: 1.5rem;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  
+  .modalFooter {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    background: #f8fafc;
+  }
+  
+  .closeButton {
+    transition: all 0.3s ease;
+  }
+  
+  .closeButton:hover {
+    transform: translateY(-2px);
+  }
+  
+  .loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+  }
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid rgba(14, 165, 233, 0.2);
+    border-top-color: #0ea5e9;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .sectionTitle {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #0c4a6e;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e0f2fe;
+  }
+  
+  .sectionIcon {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+  }
+  
+  .customerSection, .orderSection {
+    margin-bottom: 1.5rem;
+  }
+  
+  .detailCard {
+    background: #f8fafc;
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid #e0f2fe;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .detailRow {
+    display: flex;
+    margin-bottom: 0.75rem;
+  }
+  
+  .detailLabel {
+    font-weight: 600;
+    color: #64748b;
+    width: 80px;
+    flex-shrink: 0;
+  }
+  
+  .detailValue {
+    color: #0f172a;
+    flex: 1;
+  }
+  
+  .divider {
+    margin: 1rem 0;
+    background: #e0f2fe;
+    height: 2px;
+  }
+  
+  .statusBadge {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  
+  .servedBadge {
+    background: #d1fae5;
+    color: #065f46;
+  }
+  
+  .preparingBadge {
+    background: #fef3c7;
+    color: #92400e;
+  }
+  
+  .paidBadge {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+  
+  .unpaidBadge {
+    background: #fee2e2;
+    color: #b91c1c;
+  }
+  
+  .itemsTitle {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0c4a6e;
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .itemsList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .orderItem {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #e2e8f0;
+  }
+  
+  .orderItem:last-child {
+    border-bottom: none;
+  }
+  
+  .dishName {
+    font-weight: 500;
+  }
+  
+  .dishQuantity {
+    font-weight: 600;
+    color: #0ea5e9;
+  }
+  
+  .noOrderMessage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px dashed #cbd5e1;
+  }
+  
+  .noOrderIcon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .noOrderText {
+    color: #64748b;
+    font-weight: 500;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .tablePlate {
+      width: 60px;
+      height: 60px;
+    }
+    
+    .plateInner {
+      width: 48px;
+      height: 48px;
+    }
+    
+    .detailLabel {
+      width: 70px;
+    }
+  }

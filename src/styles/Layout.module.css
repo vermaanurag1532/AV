@@ -1,0 +1,67 @@
+/* Layout.module.css */
+.layoutContainer {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #fafbfc 100%);
+  }
+  
+  .mainContent {
+    flex: 1;
+    margin-left: 260px; /* Same as sidebar width */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 260px);
+    transition: all 0.3s ease;
+  }
+  
+  .contentArea {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .loadingSpinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(59, 130, 246, 0.2);
+    border-radius: 50%;
+    border-top-color: #3b82f6;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* Media Queries */
+  @media screen and (max-width: 768px) {
+    .mainContent {
+      margin-left: 0;
+      width: 100%;
+      padding-bottom: 60px; /* Space for bottom navigation */
+    }
+    
+    .contentArea {
+      padding: 1rem;
+      padding-top: 4rem; /* Space for the mobile menu toggle */
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .contentArea {
+      padding: 0.75rem;
+      padding-top: 4rem;
+    }
+  }

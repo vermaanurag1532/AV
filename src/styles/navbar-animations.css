@@ -1,0 +1,294 @@
+/* Navbar Animation Effects */
+
+/* Create a subtle glass morphism effect for navbar */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    transition: all 0.3s ease;
+  }
+  
+  .glass-effect.scrolled {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Animated Gradient for Logo */
+  .logo-gradient {
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+  }
+  
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Notification Bell Animation */
+  @keyframes bellRing {
+    0% {
+      transform: rotate(0);
+    }
+    10% {
+      transform: rotate(15deg);
+    }
+    20% {
+      transform: rotate(-12deg);
+    }
+    30% {
+      transform: rotate(10deg);
+    }
+    40% {
+      transform: rotate(-8deg);
+    }
+    50% {
+      transform: rotate(6deg);
+    }
+    60% {
+      transform: rotate(-4deg);
+    }
+    70% {
+      transform: rotate(2deg);
+    }
+    80% {
+      transform: rotate(-1deg);
+    }
+    100% {
+      transform: rotate(0);
+    }
+  }
+  
+  .notification-bell:hover {
+    animation: bellRing 1s ease;
+  }
+  
+  /* User avatar hover animation */
+  @keyframes avatarPulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+    }
+  }
+  
+  .avatar-pulse:hover {
+    animation: avatarPulse 1.5s infinite;
+  }
+  
+  /* Theme toggle animation */
+  @keyframes rotateToggle {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .rotate-toggle:hover {
+    animation: rotateToggle 0.7s ease-in-out;
+  }
+  
+  /* Search Bar Expansion */
+  @keyframes expandSearch {
+    from {
+      width: 160px;
+    }
+    to {
+      width: 240px;
+    }
+  }
+  
+  .search-expand:focus-within {
+    animation: expandSearch 0.3s forwards;
+  }
+  
+  /* Dropdown Menu Animation */
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .dropdown-menu {
+    animation: slideDown 0.3s ease;
+    transform-origin: top center;
+  }
+  
+  /* Navigation Links Hover Effect */
+  .nav-link {
+    position: relative;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    transition: width 0.3s ease;
+  }
+  
+  .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  /* Glowing Effect for Active Link */
+  @keyframes glowingBorder {
+    0% {
+      box-shadow: 0 0 5px rgba(99, 102, 241, 0.7);
+    }
+    50% {
+      box-shadow: 0 0 10px rgba(99, 102, 241, 0.9);
+    }
+    100% {
+      box-shadow: 0 0 5px rgba(99, 102, 241, 0.7);
+    }
+  }
+  
+  .active-link {
+    animation: glowingBorder 2s infinite;
+  }
+  
+  /* Username Text Animation */
+  @keyframes gradientText {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .gradient-username:hover {
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #3b82f6);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientText 3s linear infinite;
+  }
+  
+  /* Hamburger Menu Animation */
+  .hamburger-line {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #4b5563;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+  }
+  
+  .hamburger.active .hamburger-line:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  
+  .hamburger.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .hamburger.active .hamburger-line:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  /* Badge Counter Animation */
+  @keyframes countUp {
+    from {
+      transform: scale(0);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .notification-badge-new {
+    animation: countUp 0.3s ease-out;
+  }
+  
+  /* Mobile Menu Slide Animation */
+  @keyframes slideInFromRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  .mobile-menu-open {
+    animation: slideInFromRight 0.3s ease;
+  }
+  
+  /* Floating Notifications */
+  @keyframes floatUpDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+  
+  .floating-notification {
+    animation: floatUpDown 3s ease-in-out infinite;
+  }
+  
+  /* 3D Button Effect */
+  .button-3d {
+    transition: all 0.3s ease;
+    transform: perspective(500px) rotateX(0) rotateY(0);
+  }
+  
+  .button-3d:hover {
+    transform: perspective(500px) rotateX(5deg) rotateY(5deg);
+    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Logo Spin on Load */
+  @keyframes initialSpin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .logo-spin-on-load {
+    animation: initialSpin 1.5s ease-out;
+  }
+  
+  /* Responsive Adjustments for Mobile */
+  @media (max-width: 768px) {
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.95);
+    }
+    
+    .mobile-menu {
+      backdrop-filter: blur(20px);
+    }
+  }
