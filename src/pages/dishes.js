@@ -89,9 +89,9 @@ function Dishes() {
   };
   
   // Handle updating dish
-  const handleUpdateDish = async (dishData) => {
+  const handleUpdateDish = async (dishData) => { 
     try {
-      await updateDish(editingDish['Dish Id'], dishData);
+      await updateDish(editingDish['DishId'], dishData);
       setEditingDish(null);
       onClose();
       fetchDishes();
@@ -305,7 +305,7 @@ function Dishes() {
             <div className={styles.dishesGrid}>
               {categorizedDishes[category].map((dish, index) => (
                 <DishCard 
-                  key={dish['Dish Id']} 
+                  key={dish['DishId']} 
                   dish={dish} 
                   index={index}
                   onEdit={openEditModal}

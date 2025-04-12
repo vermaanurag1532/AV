@@ -21,7 +21,7 @@ function EnhancedOrderCard({ order, onStatusUpdate, dishes = [] }) {
   const getDishDetails = (dishId) => {
     // Convert both IDs to the same type (string) for comparison
     const dishIdStr = String(dishId);
-    return dishes.find(dish => String(dish['Dish Id']) === dishIdStr) || {};
+    return dishes.find(dish => String(dish['DishId']) === dishIdStr) || {};
   };
   
   // Handle serving status update
@@ -85,10 +85,10 @@ function EnhancedOrderCard({ order, onStatusUpdate, dishes = [] }) {
           <h3 className={styles.orderItemsTitle}>Order Items:</h3>
           <ul className={styles.orderItemsList}>
             {order.Dishes.map((item, index) => {
-              const dish = getDishDetails(item['Dish Id']);
+              const dish = getDishDetails(item['DishId']);
               return (
                 <li key={index} className={styles.orderItem}>
-                  <span>{dish.Name || `Dish #${item['Dish Id']}`}</span>
+                  <span>{dish.Name || `Dish #${item['DishId']}`}</span>
                   <span>x{item.Quantity}</span>
                 </li>
               );

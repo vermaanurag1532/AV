@@ -52,8 +52,8 @@ function ImprovedTableCard({ table, tableNo }) {
           'Serving Status': true,
           'Payment Status': false,
           'Dishes': [
-            { 'Dish Id': '1', 'Quantity': 2 },
-            { 'Dish Id': '3', 'Quantity': 1 }
+            { 'DishId': '1', 'Quantity': 2 },
+            { 'DishId': '3', 'Quantity': 1 }
           ]
         });
       }
@@ -287,7 +287,7 @@ function ImprovedTableCard({ table, tableNo }) {
                                       <path d="M8,12 C9,8 15,8 16,12 C17,16 13,18 12,18 C11,18 7,16 8,12 Z" fill="#fbbf24" />
                                     </svg>
                                   </div>
-                                  <span className={styles.dishName}>Dish #{dish['Dish Id']}</span>
+                                  <span className={styles.dishName}>Dish #{dish['DishId']}</span>
                                 </div>
                                 <div className={styles.quantityBadge}>
                                   <span>x{dish.Quantity}</span>

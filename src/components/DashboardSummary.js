@@ -20,7 +20,7 @@ const DashboardSummary = ({ orders, dishes }) => {
     
     orders.forEach(order => {
       order.Dishes.forEach(item => {
-        const dishId = item['Dish Id'];
+        const dishId = item['DishId'];
         dishFrequency[dishId] = (dishFrequency[dishId] || 0) + item.Quantity;
       });
     });
@@ -30,7 +30,7 @@ const DashboardSummary = ({ orders, dishes }) => {
       .sort(([, a], [, b]) => b - a)
       .slice(0, 3)
       .map(([dishId, count]) => {
-        const dish = dishes.find(d => d['Dish Id'] === parseInt(dishId) || d['Dish Id'] === dishId);
+        const dish = dishes.find(d => d['DishId'] === parseInt(dishId) || d['DishId'] === dishId);
         return {
           name: dish ? dish.Name : `Dish #${dishId}`,
           count
