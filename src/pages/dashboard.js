@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardBody } from '@nextui-org/react';
+import Link from 'next/link'; // Import Link from next/link
 import { getOrders, getDishes } from '../utils/api';
 import useAuth from '../hooks/useAuth';
 import EnhancedOrderCard from '../components/OrderCard';
@@ -201,12 +202,12 @@ function Dashboard() {
           
           {/* View All Orders button - visible to all users */}
           {orders && orders.length > 0 && (
-            <a href="/orders" className="bg-indigo-100 hover:bg-indigo-200 text-indigo-700 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 flex items-center">
+            <Link href="/orders" className="bg-indigo-100 hover:bg-indigo-200 text-indigo-700 px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300 flex items-center">
               View All Orders
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </a>
+            </Link>
           )}
         </div>
         
