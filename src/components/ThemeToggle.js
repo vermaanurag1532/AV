@@ -93,7 +93,7 @@ const WelcomeBanner = ({ user, role }) => {
       {/* Quick Stats Row */}
       <div className="px-6 pb-5 mt-3 grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white bg-opacity-60 px-4 py-3 rounded-lg" style={{opacity: 0, animation: 'fadeIn 0.5s forwards 1s'}}>
-          <div className="text-xs font-medium text-gray-500 mb-1">Day's Goal</div>
+          <div className="text-xs font-medium text-gray-500 mb-1">Day&apos;s Goal</div>
           <div className="flex items-center">
             <div className="text-lg font-bold text-gray-800 mr-2">75%</div>
             <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
