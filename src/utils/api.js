@@ -41,7 +41,7 @@ export const getAdmins = async () => {
 // API functions for Chef
 export const getChefs = async () => {
   try {
-    const response = await api.get('/Chef');
+    const response = await api.get('/Admin/Chef');
     return response.data;
   } catch (error) {
     throw error;
@@ -50,7 +50,7 @@ export const getChefs = async () => {
 
 export const createChef = async (chefData) => {
   try {
-    const response = await api.post('/Chef', chefData);
+    const response = await api.post('/Admin', chefData);
     return response.data;
   } catch (error) {
     throw error;
@@ -59,7 +59,7 @@ export const createChef = async (chefData) => {
 
 export const deleteChef = async (chefId) => {
   try {
-    const response = await api.delete(`/Chef/${chefId}`);
+    const response = await api.delete(`/Admin/${chefId}`);
     return response.data;
   } catch (error) {
     throw error;

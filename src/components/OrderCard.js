@@ -21,7 +21,7 @@ function EnhancedOrderCard({ order, onStatusUpdate, dishes = [] }) {
   const getDishDetails = (dishId) => {
     // Convert both IDs to the same type (string) for comparison
     const dishIdStr = String(dishId);
-    return dishes.find(dish => String(dish['DishId']) === dishIdStr) || {};
+    return dishes.find(dish => String(dish['Dish Id']) === dishIdStr) || {};
   };
   
   // Handle serving status update
@@ -85,10 +85,10 @@ function EnhancedOrderCard({ order, onStatusUpdate, dishes = [] }) {
           <h3 className={styles.orderItemsTitle}>Order Items:</h3>
           <ul className={styles.orderItemsList}>
             {order.Dishes.map((item, index) => {
-              const dish = getDishDetails(item['DishId']);
+              const dish = getDishDetails(item['Dish Id']);
               return (
                 <li key={index} className={styles.orderItem}>
-                  <span>{dish.Name || `Dish #${item['DishId']}`}</span>
+                  <span>{dish.Name || `Dish #${item['Dish Id']}`}</span>
                   <span>x{item.Quantity}</span>
                 </li>
               );
@@ -109,6 +109,7 @@ function EnhancedOrderCard({ order, onStatusUpdate, dishes = [] }) {
           {order['Serving Status'] ? "Mark as Preparing" : "Mark as Prepared"}
         </button>
         
+        {/* Only render payment buttons for manager users */}
         {isManager && (
           <button
             className={order['Payment Status'] ? styles.unpayButton : styles.payButton}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Divider } from '@nextui-org/react';
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from '@nextui-org/react';
 import { getCustomerById, getOrders } from '../utils/api';
 import styles from '../styles/TableCard.module.css';
 
@@ -123,7 +123,7 @@ function ImprovedTableCard({ table, tableNo }) {
               
               <button 
                 className={styles.viewButton}
-                onClick={handleViewDetails} // Add click handler directly to button
+                onClick={handleViewDetails}
               >
                 <svg className={styles.buttonIcon} viewBox="0 0 24 24" width="16" height="16">
                   <circle cx="12" cy="12" r="10" fill="#fef3c7" stroke="#d97706" strokeWidth="2" />
@@ -139,9 +139,12 @@ function ImprovedTableCard({ table, tableNo }) {
       {/* Details Modal */}
       <Modal 
         isOpen={isOpen} 
-        onClose={onClose} 
-        size="md" 
+        onClose={onClose}
         className={styles.detailsModal}
+        size="lg"
+        placement="center"
+        scrollBehavior="inside"
+        backdrop="blur"
         isDismissable={true}
       >
         <ModalContent>
@@ -157,6 +160,7 @@ function ImprovedTableCard({ table, tableNo }) {
                 {loading ? (
                   <div className={styles.loadingContainer}>
                     <div className={styles.spinner}></div>
+                    <p className={styles.loadingText}>Loading details...</p>
                   </div>
                 ) : (
                   <>
@@ -204,7 +208,7 @@ function ImprovedTableCard({ table, tableNo }) {
                       </div>
                     )}
                     
-                    <Divider className={styles.divider} />
+                    <div className={styles.divider}></div>
                     
                     {orderDetails ? (
                       <div className={styles.orderSection}>
@@ -216,7 +220,7 @@ function ImprovedTableCard({ table, tableNo }) {
                         </h3>
                         <div className={styles.detailCard}>
                           <div className={styles.orderHeader}>
-                            <div className={styles.orderIdBadge}>Order #{orderDetails['Order Id']}</div>
+                            <div className={styles.orderIdBadge}>Order #{orderDetails['Order Id'].split('-')[1]}</div>
                             <div className={styles.orderTimeBadge}>
                               <svg className={styles.timeIcon} viewBox="0 0 24 24" width="14" height="14">
                                 <circle cx="12" cy="12" r="10" fill="none" stroke="#6b7280" strokeWidth="2" />
@@ -287,7 +291,7 @@ function ImprovedTableCard({ table, tableNo }) {
                                       <path d="M8,12 C9,8 15,8 16,12 C17,16 13,18 12,18 C11,18 7,16 8,12 Z" fill="#fbbf24" />
                                     </svg>
                                   </div>
-                                  <span className={styles.dishName}>Dish #{dish['DishId']}</span>
+                                  <span className={styles.dishName}>{dish.Name}</span>
                                 </div>
                                 <div className={styles.quantityBadge}>
                                   <span>x{dish.Quantity}</span>
@@ -312,7 +316,13 @@ function ImprovedTableCard({ table, tableNo }) {
                 )}
               </ModalBody>
               <ModalFooter className={styles.modalFooter}>
-                <Button color="danger" variant="light" onPress={onClose} className={styles.closeButton}>
+                <Button 
+                  color="primary" 
+                  variant="flat" 
+                  onPress={onClose} 
+                  className={styles.closeButton}
+                  auto
+                >
                   Close
                 </Button>
               </ModalFooter>
