@@ -231,7 +231,6 @@ function EnhancedDishForm({ isOpen, onClose, onSubmit, initialData = null }) {
                   
                   <div className={styles.formRow}>
                     <Input
-                      label="Dish Name"
                       name="Name"
                       value={formData.Name}
                       onChange={handleChange}
@@ -244,7 +243,6 @@ function EnhancedDishForm({ isOpen, onClose, onSubmit, initialData = null }) {
                     />
                     
                     <Input
-                      label="Price (₹)"
                       name="Price"
                       type="number"
                       value={formData.Price}
@@ -255,17 +253,12 @@ function EnhancedDishForm({ isOpen, onClose, onSubmit, initialData = null }) {
                       isInvalid={!!validationErrors.Price}
                       errorMessage={validationErrors.Price}
                       className={styles.formInput}
-                      startContent={
-                        <div className="pointer-events-none flex items-center">
-                          <span className="text-default-400 text-small">₹</span>
-                        </div>
-                      }
+
                     />
                   </div>
                   
                   <div className={styles.formRow}>
                     <Input
-                      label="Cooking Time"
                       name="Cooking Time"
                       value={formData['Cooking Time']}
                       onChange={handleChange}
@@ -275,7 +268,6 @@ function EnhancedDishForm({ isOpen, onClose, onSubmit, initialData = null }) {
                     />
                     
                     <Input
-                      label="Rating"
                       type="number"
                       step="0.1"
                       min="0"
@@ -288,16 +280,10 @@ function EnhancedDishForm({ isOpen, onClose, onSubmit, initialData = null }) {
                       isInvalid={!!validationErrors.Rating}
                       errorMessage={validationErrors.Rating}
                       className={styles.formInput}
-                      startContent={
-                        <div className="pointer-events-none flex items-center">
-                          <span className="text-warning">★</span>
-                        </div>
-                      }
                     />
                   </div>
                   
                   <Textarea
-                    label="Description"
                     name="Discription"
                     value={formData.Discription}
                     onChange={handleChange}

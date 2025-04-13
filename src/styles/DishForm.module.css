@@ -1,8 +1,13 @@
 /* DishForm.module.css */
 .formModal {
-    --modal-backdrop-filter: blur(8px);
+    background: white;
+    --modal-backdrop-filter: blur(10px);
     --modal-backdrop-opacity: 0.6;
     overflow: hidden;
+    position: fixed;
+    top: 5%;
+    z-index: 1000;
+    width: 80%;
   }
   
   .modalHeader {

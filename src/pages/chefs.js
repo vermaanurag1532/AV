@@ -165,7 +165,7 @@ function Chefs() {
       <div className={styles.pageHeader}>
         <div className={styles.headerLeft}>
           <h1 className={styles.pageTitle}>Chef Management</h1>
-          <p className={styles.pageSubtitle}>Add, remove and manage your restaurant's chef staff</p>
+          <p className={styles.pageSubtitle}>Add, remove and manage your restaurant&apos;s chef staff</p>
         </div>
         
         {/* Improved header controls with better styling and layout */}
