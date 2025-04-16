@@ -213,7 +213,7 @@ function Tables() {
             <div key={table.tableNo} className={styles.tableItem}>
               <ImprovedTableCard 
                 table={table} 
-                tableNo={`Table ${table.tableNo}`} 
+                tableNo={`${table.tableNo}`} 
               />
             </div>
           ))}
