@@ -15,31 +15,63 @@ import {
 import styles from '../styles/DishForm.module.css';
 
 function EnhancedDishForm({ isOpen, onClose, onSubmit, initialData = null }) {
-  const [formData, setFormData] = useState(
-    initialData || {
-      Name: '',
-      Price: '',
-      Discription: '',
-      Rating: 0,
-      'Cooking Time': '',
-      Images: [],
-      'Type of Dish': [],
-      'Genre of Taste': [],
-      Available: true
-    }
-  );
+  const [formData, setFormData] = useState({
+    Name: '',
+    Price: '',
+    Discription: '',
+    Rating: 0,
+    'Cooking Time': '',
+    Images: [],
+    'Type of Dish': [],
+    'Genre of Taste': [],
+    Available: true
+  });
   
-  const [dishTypes, setDishTypes] = useState(
-    initialData ? initialData['Type of Dish'] : []
-  );
-  
-  const [tasteGenres, setTasteGenres] = useState(
-    initialData ? initialData['Genre of Taste'] : []
-  );
+  const [dishTypes, setDishTypes] = useState([]);
+  const [tasteGenres, setTasteGenres] = useState([]);
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [validationErrors, setValidationErrors] = useState({});
   const [formCompletion, setFormCompletion] = useState(0);
+  
+  // Update form data when initialData changes or when the modal opens
+  useEffect(() => {
+    if (initialData) {
+      setFormData({
+        Name: initialData.Name || '',
+        Price: initialData.Price || '',
+        Discription: initialData.Discription || '',
+        Rating: initialData.Rating || 0,
+        'Cooking Time': initialData['Cooking Time'] || '',
+        Images: initialData.Images || [],
+        'Type of Dish': initialData['Type of Dish'] || [],
+        'Genre of Taste': initialData['Genre of Taste'] || [],
+        Available: initialData.Available !== undefined ? initialData.Available : true
+      });
+      
+      setDishTypes(initialData['Type of Dish'] || []);
+      setTasteGenres(initialData['Genre of Taste'] || []);
+    } else {
+      // Reset form when adding a new dish
+      setFormData({
+        Name: '',
+        Price: '',
+        Discription: '',
+        Rating: 0,
+        'Cooking Time': '',
+        Images: [],
+        'Type of Dish': [],
+        'Genre of Taste': [],
+        Available: true
+      });
+      
+      setDishTypes([]);
+      setTasteGenres([]);
+    }
+    
+    // Clear validation errors when opening the form
+    setValidationErrors({});
+  }, [initialData, isOpen]);
   
   // Recalculate form completion percentage
   useEffect(() => {
@@ -166,23 +198,6 @@ function EnhancedDishForm({ isOpen, onClose, onSubmit, initialData = null }) {
       };
       
       await onSubmit(submissionData);
-      
-      // Reset form after successful submission
-      if (!initialData) {
-        setFormData({
-          Name: '',
-          Price: '',
-          Discription: '',
-          Rating: 0,
-          'Cooking Time': '',
-          Images: [],
-          'Type of Dish': [],
-          'Genre of Taste': [],
-          Available: true
-        });
-        setDishTypes([]);
-        setTasteGenres([]);
-      }
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
@@ -253,7 +268,6 @@ function EnhancedDishForm({ isOpen, onClose, onSubmit, initialData = null }) {
                       isInvalid={!!validationErrors.Price}
                       errorMessage={validationErrors.Price}
                       className={styles.formInput}
-
                     />
                   </div>
                   
@@ -285,6 +299,7 @@ function EnhancedDishForm({ isOpen, onClose, onSubmit, initialData = null }) {
                   
                   <Textarea
                     name="Discription"
+                    label="Description"
                     value={formData.Discription}
                     onChange={handleChange}
                     placeholder="Enter dish description"
