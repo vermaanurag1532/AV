@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Card, CardBody, CardFooter, Button, Chip, Tooltip } from '@nextui-org/react';
+
+import { Card, CardBody, CardFooter, Button, Chip, Tooltip, Image } from '@nextui-org/react';
 import styles from '../styles/DishCard.module.css';
 
 const DishCard = ({ dish, onEdit, onDelete, index, isDeleting, deletingId }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [imageError, setImageError] = useState(false);
   
   // Render stars based on rating
   const renderStars = (rating) => {
@@ -56,8 +58,39 @@ const DishCard = ({ dish, onEdit, onDelete, index, isDeleting, deletingId }) => 
     });
   };
   
+  // Get dish type icon
+  const getDishTypeIcon = () => {
+    if (dish['Type of Dish'].includes('Veg')) {
+      return (
+        <div className={styles.dishTypeIcon} title="Vegetarian">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" stroke="#10B981" strokeWidth="2"/>
+            <circle cx="12" cy="12" r="4" fill="#10B981"/>
+          </svg>
+        </div>
+      );
+    } else {
+      return (
+        <div className={styles.dishTypeIcon} title="Non-Vegetarian">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" stroke="#EF4444" strokeWidth="2"/>
+            <path d="M8 8L16 16M8 16L16 8" stroke="#EF4444" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
+        </div>
+      );
+    }
+  };
+  
   // Calculate delay for staggered animation
   const animationDelay = `${0.1 + (index % 9) * 0.1}s`;
+  
+  // Default image if the dish doesn't have one or if there's an error loading
+  const defaultImage = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1000&auto=format&fit=crop';
+  
+  // Get dish image
+const dishImage = dish.Images && dish.Images.length > 0 && !imageError 
+  ? (typeof dish.Images[0] === 'string' ? dish.Images[0] : (dish.Images[0]?.url || defaultImage)) 
+  : defaultImage;
   
   return (
     <div 
@@ -74,7 +107,19 @@ const DishCard = ({ dish, onEdit, onDelete, index, isDeleting, deletingId }) => 
               title={dish.Available ? "Available" : "Unavailable"}></div>
         
         {/* Dish type icon */}
-
+        {getDishTypeIcon()}
+        
+        {/* Dish Image */}
+        <div className={styles.dishImageContainer}>
+          <img
+            src={dishImage}
+            alt={dish.Name}
+            className={styles.dishImage}
+            onError={() => setImageError(true)}
+            radius="lg"
+          />
+          <div className={styles.imageOverlay}></div>
+        </div>
         
         <CardBody className={styles.dishCardBody}>
           <div className={styles.dishHeader}>
@@ -160,7 +205,7 @@ const DishCard = ({ dish, onEdit, onDelete, index, isDeleting, deletingId }) => 
       {/* 3D effect for hover */}
       <div className={`${styles.cardShadow} ${isHovered ? styles.shadowActive : ''}`}></div>
     </div>
-  );
-};
+  )};
 
+  
 export default DishCard;

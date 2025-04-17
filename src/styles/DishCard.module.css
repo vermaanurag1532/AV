@@ -1,327 +1,364 @@
 /* DishCard.module.css */
 .dishCardContainer {
-    position: relative;
-    perspective: 1500px;
-    margin-bottom: 10px;
+  position: relative;
+  perspective: 1500px;
+  margin-bottom: 10px;
+}
+
+.dishCard {
+  height: 100%;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  background: #ffffff;
+  transform: rotateX(0) rotateY(0);
+  z-index: 2;
+  opacity: 0;
+  animation: fadeInUp 0.6s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
   }
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dishCard.hovered {
+  transform: translateY(-15px) scale(1.02) rotateX(2deg) rotateY(-2deg);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+}
+
+.cardShadow {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  transform: translateY(10px) scale(0.95);
+  filter: blur(20px);
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 1;
+}
+
+.shadowActive {
+  opacity: 0.5;
+  transform: translateY(20px) scale(0.9);
+}
+
+/* Image related styles */
+.dishImageContainer {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.dishImage{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.5s ease;
+}
+
+.dishCard:hover .dishImage {
+  transform: scale(1.05);
+}
+
+.imageOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+  pointer-events: none;
+}
+
+.dishCardBody {
+  padding: 1.5rem;
+}
+
+.dishHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.dishName {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.25rem;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+.dishName::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  transition: width 0.3s ease;
+}
+
+.dishCard:hover .dishName::after {
+  width: 100%;
+}
+
+.dishPrice {
+  font-weight: 600;
+  color: #4f46e5;
+  transition: all 0.3s ease;
+}
+
+.dishCard:hover .dishPrice {
+  transform: scale(1.05);
+}
+
+.dishBadges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dishDescription {
+  color: #4b5563;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+  min-height: 4rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.dishCard:hover .dishDescription {
+  color: #1f2937;
+}
+
+.dishDetails {
+  font-size: 0.75rem;
+  color: #6b7280;
+  transition: all 0.3s ease;
+}
+
+.dishCard:hover .dishDetails {
+  transform: translateY(-3px);
+}
+
+.detailsRow {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.detailLabel {
+  font-weight: 500;
+}
+
+.starRating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.dishCard:hover .starRating {
+  transform: scale(1.05);
+}
+
+.star {
+  color: #fbbf24;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.dishCard:hover .star {
+  transform: rotate(5deg);
+}
+
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 0.75rem;
+}
+
+.categoryBadge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-right: 0.375rem;
+  margin-bottom: 0.375rem;
+  transition: all 0.3s ease;
+}
+
+.dishCard:hover .categoryBadge {
+  transform: translateY(-2px);
+}
+
+.spicyBadge {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.sweetBadge {
+  background-color: rgba(216, 180, 254, 0.15);
+  color: #a855f7;
+  border: 1px solid rgba(216, 180, 254, 0.3);
+}
+
+.dishCardFooter {
+  padding: 1rem 1.5rem;
+  background: linear-gradient(to bottom, rgba(249, 250, 251, 0) 0%, rgba(249, 250, 251, 1) 25%);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.dishCard:hover .dishCardFooter {
+  background: linear-gradient(to bottom, rgba(249, 250, 251, 0) 0%, rgba(243, 244, 246, 1) 25%);
+}
+
+.editButton {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: #3b82f6;
+  border: 1px solid #3b82f6;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.editButton:hover {
+  background: rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+.deleteButton {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: #ef4444;
+  border: 1px solid #ef4444;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  background: rgba(239, 68, 68, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Colorful availability indicator */
+.availabilityIndicator {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px white;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+.availabilityIndicator.available {
+  background-color: #10b981;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.availabilityIndicator.unavailable {
+  background-color: #ef4444;
+}
+
+/* Food type icon */
+.dishTypeIcon {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+  transition: all 0.3s ease;
+}
+
+.dishCard:hover .dishTypeIcon {
+  transform: rotate(15deg) scale(1.1);
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
   .dishCard {
-    height: 100%;
-    border-radius: 1rem;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    position: relative;
-    background: #ffffff;
-    transform: rotateX(0) rotateY(0);
-    z-index: 2;
-    opacity: 0;
-    animation: fadeInUp 0.6s forwards;
-  }
-  
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  .dishCard.hovered {
-    transform: translateY(-15px) scale(1.02) rotateX(2deg) rotateY(-2deg);
-    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.2);
-    z-index: 3;
-  }
-  
-  .cardShadow {
-    position: absolute;
-    top: 15px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.1);
-    border-radius: 1rem;
-    transform: translateY(10px) scale(0.95);
-    filter: blur(20px);
-    opacity: 0;
-    transition: all 0.4s ease;
-    z-index: 1;
-  }
-  
-  .shadowActive {
-    opacity: 0.5;
-    transform: translateY(20px) scale(0.9);
-  }
-  
-  .dishCardBody {
-    padding: 1.5rem;
-  }
-  
-  .dishHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.75rem;
-  }
-  
-  .dishName {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #1f2937;
-    margin-bottom: 0.25rem;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dishName::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-    transition: width 0.3s ease;
-  }
-  
-  .dishCard:hover .dishName::after {
-    width: 100%;
-  }
-  
-  .dishPrice {
-    font-weight: 600;
-    color: #4f46e5;
-    transition: all 0.3s ease;
-  }
-  
-  .dishCard:hover .dishPrice {
-    transform: scale(1.05);
-  }
-  
-  .dishBadges {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    height: auto;
   }
   
   .dishDescription {
-    color: #4b5563;
-    font-size: 0.875rem;
-    line-height: 1.4;
-    margin-bottom: 1.25rem;
-    min-height: 4rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    transition: all 0.3s ease;
+    min-height: auto;
   }
   
-  .dishCard:hover .dishDescription {
-    color: #1f2937;
+  .dishImageContainer {
+    height: 150px;
   }
-  
-  .dishDetails {
-    font-size: 0.75rem;
-    color: #6b7280;
-    transition: all 0.3s ease;
-  }
-  
-  .dishCard:hover .dishDetails {
-    transform: translateY(-3px);
-  }
-  
-  .detailsRow {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-  }
-  
-  .detailLabel {
-    font-weight: 500;
-  }
-  
-  .starRating {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    transition: all 0.3s ease;
-  }
-  
-  .dishCard:hover .starRating {
-    transform: scale(1.05);
-  }
-  
-  .star {
-    color: #fbbf24;
-    font-size: 0.875rem;
-    transition: all 0.2s ease;
-  }
-  
-  .dishCard:hover .star {
-    transform: rotate(5deg);
-  }
-  
-  .tagContainer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.375rem;
-    margin-top: 0.75rem;
-  }
-  
-  .categoryBadge {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border-radius: 1rem;
-    font-size: 0.75rem;
-    font-weight: 500;
-    margin-right: 0.375rem;
-    margin-bottom: 0.375rem;
-    transition: all 0.3s ease;
-  }
-  
-  .dishCard:hover .categoryBadge {
-    transform: translateY(-2px);
-  }
-  
-  .spicyBadge {
-    background-color: rgba(245, 158, 11, 0.15);
-    color: #d97706;
-    border: 1px solid rgba(245, 158, 11, 0.3);
-  }
-  
-  .sweetBadge {
-    background-color: rgba(216, 180, 254, 0.15);
-    color: #a855f7;
-    border: 1px solid rgba(216, 180, 254, 0.3);
-  }
-  
-  .dishCardFooter {
-    padding: 1rem 1.5rem;
-    background: linear-gradient(to bottom, rgba(249, 250, 251, 0) 0%, rgba(249, 250, 251, 1) 25%);
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    display: flex;
-    justify-content: flex-end;
+}
+
+@media (max-width: 480px) {
+  .dishHeader {
+    flex-direction: column;
     gap: 0.75rem;
-    transition: all 0.3s ease;
   }
   
-  .dishCard:hover .dishCardFooter {
-    background: linear-gradient(to bottom, rgba(249, 250, 251, 0) 0%, rgba(243, 244, 246, 1) 25%);
+  .dishBadges {
+    flex-direction: row;
   }
   
-  .editButton {
-    padding: 0.5rem 1rem;
-    background: transparent;
-    color: #3b82f6;
-    border: 1px solid #3b82f6;
-    border-radius: 0.375rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    cursor: pointer;
+  .dishImageContainer {
+    height: 120px;
   }
-  
-  .editButton:hover {
-    background: rgba(59, 130, 246, 0.1);
-    transform: translateY(-2px);
-  }
-  
-  .deleteButton {
-    padding: 0.5rem 1rem;
-    background: transparent;
-    color: #ef4444;
-    border: 1px solid #ef4444;
-    border-radius: 0.375rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-  
-  .deleteButton:hover {
-    background: rgba(239, 68, 68, 0.1);
-    transform: translateY(-2px);
-  }
-  
-  /* Colorful availability indicator */
-  .availabilityIndicator {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 50%;
-    box-shadow: 0 0 0 2px white;
-    transition: all 0.3s ease;
-    z-index: 3;
-  }
-  
-  .availabilityIndicator.available {
-    background-color: #10b981;
-    animation: pulse 2s infinite;
-  }
-  
-  @keyframes pulse {
-    0% {
-      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-    }
-    70% {
-      box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
-    }
-    100% {
-      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
-    }
-  }
-  
-  .availabilityIndicator.unavailable {
-    background-color: #ef4444;
-  }
-  
-  /* Food type icon */
-  .dishTypeIcon {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 50%;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 3;
-    transition: all 0.3s ease;
-  }
-  
-  .dishCard:hover .dishTypeIcon {
-    transform: rotate(15deg) scale(1.1);
-  }
-  
-  /* Media queries for responsive design */
-  @media (max-width: 768px) {
-    .dishCard {
-      height: auto;
-    }
-    
-    .dishDescription {
-      min-height: auto;
-      -webkit-line-clamp: 2;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .dishHeader {
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-    
-    .dishBadges {
-      flex-direction: row;
-    }
-  }
+}
