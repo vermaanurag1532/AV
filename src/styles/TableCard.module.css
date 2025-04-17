@@ -991,3 +991,63 @@
     margin-bottom: 0.25rem;
   }
 }
+
+/* Button Group Container */
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Clear Table Button */
+.clearButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background-color: #fee2e2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.clearButton:hover {
+  background-color: #fecaca;
+  box-shadow: 0 2px 4px rgba(220, 38, 38, 0.1);
+}
+
+.clearButton:active {
+  transform: translateY(1px);
+}
+
+.clearingButton {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Clear Table Button in Modal */
+.clearTableSection {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px dashed #e5e7eb;
+}
+
+.modalClearButton {
+  width: 100%;
+  padding: 12px;
+  font-weight: 500;
+  font-size: 14px;
+  background-color: #fee2e2 !important;
+  color: #dc2626 !important;
+  border: 1px solid #fecaca !important;
+}
+
+.modalClearButton:hover {
+  background-color: #fecaca !important;
+}

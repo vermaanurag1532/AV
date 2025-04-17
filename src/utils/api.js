@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const API_URL = '/api';
+const API_URL = 'http://localhost:3000/';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -115,7 +115,7 @@ export const getOrders = async () => {
 
 export const updateOrderStatus = async (orderId, statusData) => {
   try {
-    const response = await api.patch(`/Order/${orderId}`, statusData);
+    const response = await api.put(`/Order/${orderId}`, statusData);
     return response.data;
   } catch (error) {
     throw error;

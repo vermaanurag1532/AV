@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from '@nextui-org/react';
 import { getCustomerById, getOrders } from '../utils/api';
 import styles from '../styles/TableCard.module.css';
+import axios from 'axios'; // Import axios for making API calls
 
 function ImprovedTableCard({ table, tableNo }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [customerDetails, setCustomerDetails] = useState(null);
   const [orderDetails, setOrderDetails] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [clearingTable, setClearingTable] = useState(false);
   
   // Determine if table is occupied
   const isOccupied = !!table.customerId;
@@ -61,6 +63,36 @@ function ImprovedTableCard({ table, tableNo }) {
       onOpen();
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Handle clearing the table
+  const handleClearTable = async (e) => {
+    // Stop event propagation
+    if (e) {
+      e.stopPropagation();
+    }
+    
+    setClearingTable(true);
+    
+    try {
+      // API call to update the table status - replace this URL with your actual API endpoint
+      await axios.put(`http://localhost:3000/Table/${table.tableNo}`, {
+        'Table No': table.tableNo,
+        'Customer ID': '',
+        'Order Id': ''
+      });
+      
+      // Refresh the page to reflect changes
+      window.location.reload();
+      
+      // Alternative approach: Use a callback to update parent state
+      // onTableCleared(table.tableNo);
+    } catch (error) {
+      console.error('Failed to clear table:', error);
+      alert('Failed to clear table. Please try again.');
+    } finally {
+      setClearingTable(false);
     }
   };
 
@@ -121,16 +153,31 @@ function ImprovedTableCard({ table, tableNo }) {
                 <span>Order #{table.orderId.split('-')[1]}</span>
               </div>
               
-              <button 
-                className={styles.viewButton}
-                onClick={handleViewDetails}
-              >
-                <svg className={styles.buttonIcon} viewBox="0 0 24 24" width="16" height="16">
-                  <circle cx="12" cy="12" r="10" fill="#fef3c7" stroke="#d97706" strokeWidth="2" />
-                  <path d="M12,7 L12,13 L16,13" fill="none" stroke="#d97706" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-                View Details
-              </button>
+              <div className={styles.buttonGroup}>
+                <button 
+                  className={styles.viewButton}
+                  onClick={handleViewDetails}
+                >
+                  <svg className={styles.buttonIcon} viewBox="0 0 24 24" width="16" height="16">
+                    <circle cx="12" cy="12" r="10" fill="#fef3c7" stroke="#d97706" strokeWidth="2" />
+                    <path d="M12,7 L12,13 L16,13" fill="none" stroke="#d97706" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                  View Details
+                </button>
+                
+                {/* New Clear Table Button */}
+                <button 
+                  className={`${styles.clearButton} ${clearingTable ? styles.clearingButton : ''}`}
+                  onClick={handleClearTable}
+                  disabled={clearingTable}
+                >
+                  <svg className={styles.buttonIcon} viewBox="0 0 24 24" width="16" height="16">
+                    <circle cx="12" cy="12" r="10" fill="#fee2e2" stroke="#dc2626" strokeWidth="2" />
+                    <path d="M8,8 L16,16 M8,16 L16,8" fill="none" stroke="#dc2626" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                  {clearingTable ? 'Clearing...' : 'Clear Table'}
+                </button>
+              </div>
             </div>
           )}
         </div>
@@ -312,6 +359,22 @@ function ImprovedTableCard({ table, tableNo }) {
                         <div className={styles.noOrderText}>No active order for this table</div>
                       </div>
                     )}
+                    
+                    {/* Add Clear Table button to modal footer */}
+                    <div className={styles.clearTableSection}>
+                      <Button 
+                        color="danger" 
+                        variant="flat" 
+                        className={styles.modalClearButton}
+                        onClick={() => {
+                          onClose();
+                          handleClearTable();
+                        }}
+                        disabled={clearingTable}
+                      >
+                        {clearingTable ? 'Clearing Table...' : 'Clear Table & Check Out Customer'}
+                      </Button>
+                    </div>
                   </>
                 )}
               </ModalBody>
