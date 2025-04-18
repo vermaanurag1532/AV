@@ -16,6 +16,8 @@ import useAuth from '../hooks/useAuth';
 import OrderCard from '../components/OrderCard';
 import AnimatedLoader from '../components/AnimatedLoader';
 import styles from '../styles/Orders.module.css';
+import { subscribeToOrders, unsubscribeFromOrders, initializeSocket } from '../utils/socketService';
+import { toast } from 'react-hot-toast'; // Add toast for notifications
 
 function Orders() {
   const { role } = useAuth();
@@ -41,21 +43,87 @@ function Orders() {
         setDishes(dishesData);
       } catch (error) {
         console.error('Error fetching orders:', error);
+        toast.error('Failed to load orders');
       } finally {
         setLoading(false);
       }
     };
     
     fetchData();
+    
+    // Initialize socket connection
+    initializeSocket();
+    
+    // Subscribe to order events
+    subscribeToOrders(handleOrderEvent);
+    
+    // Cleanup on component unmount
+    return () => {
+      unsubscribeFromOrders();
+    };
   }, []);
   
-  // Handle order status update
+  // Handle socket events related to orders
+  const handleOrderEvent = (eventType, data) => {
+    switch (eventType) {
+      case 'created':
+        // Add new order to the list
+        setOrders(prevOrders => [data, ...prevOrders]);
+        toast.success('New order received!');
+        break;
+        
+      case 'updated':
+        // Update the order in the list
+        setOrders(prevOrders => 
+          prevOrders.map(order => 
+            order['Order Id'] === data['Order Id'] ? data : order
+          )
+        );
+        break;
+        
+      case 'status_updated':
+        // Update only the specific status field
+        setOrders(prevOrders => 
+          prevOrders.map(order => {
+            if (order['Order Id'] === data.orderId) {
+              // Create a copy of the order
+              const updatedOrder = { ...order };
+              
+              // Update the specific status field
+              if (data.status === 'serving') {
+                updatedOrder['Serving Status'] = data.value;
+              } else if (data.status === 'payment') {
+                updatedOrder['Payment Status'] = data.value;
+              }
+              
+              return updatedOrder;
+            }
+            return order;
+          })
+        );
+        break;
+        
+      case 'deleted':
+        // Remove the order from the list
+        setOrders(prevOrders => 
+          prevOrders.filter(order => order['Order Id'] !== data)
+        );
+        toast.info('An order has been deleted');
+        break;
+        
+      default:
+        console.log('Unknown event type:', eventType);
+    }
+  };
+  
+  // Handle order status update (now only needed for local updates)
   const handleOrderStatusUpdate = async () => {
     try {
       const ordersData = await getOrders();
       setOrders(ordersData);
     } catch (error) {
       console.error('Error updating orders:', error);
+      toast.error('Failed to update orders');
     }
   };
   
@@ -89,7 +157,7 @@ function Orders() {
     if (searchTerm) {
       filteredOrders = filteredOrders.filter(order => {
         const orderIdMatch = order['Order Id'].toString().includes(searchTerm);
-        const tableMatch = order['Table No'].toString().includes(searchTerm);
+        const tableMatch = order['Table No']?.toString().includes(searchTerm);
         return orderIdMatch || tableMatch;
       });
     }
