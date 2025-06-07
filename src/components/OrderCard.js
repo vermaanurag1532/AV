@@ -60,6 +60,9 @@ function EnhancedOrderCard({ order, onStatusUpdate, dishes = [] }) {
               Table: {order['Table No']}
             </p>
             <p className={styles.orderMeta}>
+              Customer ID: {order['Customer Id']}
+            </p>
+            <p className={styles.orderMeta}>
               Time: {order['Time']} | Date: {order['Date']}
             </p>
           </div>

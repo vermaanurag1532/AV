@@ -102,9 +102,9 @@ function EnhancedNavbar() {
           
           {/* Navigation Links */}
           <div className={styles.navLinks}>
-            <Link href="/dashboard">
-              <div className={`${styles.navLink} ${router.pathname === '/dashboard' ? styles.active : ''}`}>
-                Dashboard
+            <Link href="/feedback">
+              <div className={`${styles.navLink} ${router.pathname === '/feedback' ? styles.active : ''}`}>
+                Feedback
               </div>
             </Link>
           </div>
