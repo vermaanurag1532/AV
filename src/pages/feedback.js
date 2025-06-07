@@ -352,7 +352,7 @@ function Feedback() {
                   </div>
                   
                   <div className={styles.feedbackContent}>
-                    <p className={styles.feedbackText}>"{feedback.Feedback}"</p>
+                    <p className={styles.feedbackText}>&ldquo;{feedback.Feedback}&rdquo;</p>
                   </div>
                   
                   <div className={styles.feedbackFooter}>
