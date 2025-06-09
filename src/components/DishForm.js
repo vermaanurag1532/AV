@@ -230,7 +230,7 @@ function EnhancedDishForm({ isOpen, onClose, onSubmit, initialData = null }) {
     
     try {
       // Upload the image
-      const response = await axios.post('http://localhost:3000/Dish/upload', uploadData, {
+      const response = await axios.post('/api/Dish/upload', uploadData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },

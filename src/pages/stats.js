@@ -23,10 +23,10 @@ const Stats = () => {
       setError(null);
 
       const [ordersRes, dishesRes, statsRes, insightsRes] = await Promise.all([
-        fetch('http://localhost:3000/Order'),
-        fetch('http://localhost:3000/Dish'),
-        fetch('http://localhost:3000/orderReport/statistics'),
-        fetch('http://localhost:3000/api/insights/quick')
+        fetch('/api/Order'),
+        fetch('/api/Dish'),
+        fetch('/api/orderReport/statistics'),
+        fetch('/api/api/insights/quick')
       ]);
 
       if (!ordersRes.ok || !dishesRes.ok) {
@@ -213,7 +213,7 @@ const Stats = () => {
       const startDate = '2025-01-01';
       const endDate = '2025-12-31';
       
-      const response = await fetch(`http://localhost:3000/api/insights/pdf?startDate=${startDate}&endDate=${endDate}`, {
+      const response = await fetch(`/api/api/insights/pdf?startDate=${startDate}&endDate=${endDate}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
