@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 
 // Define the socket connection URL
-const SOCKET_URL = '/api'; // Use your server URL here
+const SOCKET_URL = 'http://localhost:3000/'; // Use your server URL here
 
 // Create a socket instance
 let socket;

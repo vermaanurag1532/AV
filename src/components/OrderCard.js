@@ -91,7 +91,7 @@ function EnhancedOrderCard({ order, onStatusUpdate, dishes = [] }) {
               const dish = getDishDetails(item['Dish Id']);
               return (
                 <li key={index} className={styles.orderItem}>
-                  <span>{dish.Name || `Dish #${item['Dish Id']}`}</span>
+                  <span>{`Dish ${item['Name']}`}</span>
                   <span>x{item.Quantity}</span>
                 </li>
               );
