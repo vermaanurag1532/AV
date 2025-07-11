@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const API_URL = '/api';
+const API_URL = 'http://localhost:3000/';
 
 const api = axios.create({
   baseURL: API_URL,
@@ -31,7 +31,7 @@ api.interceptors.response.use(
 // API functions for Admin
 export const loginAdmin = async (email, password) => {
   try {
-    const response = await api.post('/Admin/login', { email, password });
+    const response = await api.post('/Admin/restro-1/login', { email, password });
     return response.data;
   } catch (error) {
     throw error;
@@ -40,7 +40,7 @@ export const loginAdmin = async (email, password) => {
 
 export const getAdmins = async () => {
   try {
-    const response = await api.get('/Admin');
+    const response = await api.get('/Admin/restro-1');
     return response.data;
   } catch (error) {
     throw error;
@@ -50,7 +50,7 @@ export const getAdmins = async () => {
 // API functions for Chef
 export const getChefs = async () => {
   try {
-    const response = await api.get('/Admin/Chef');
+    const response = await api.get('/Admin/restro-1/Chefs');
     return response.data;
   } catch (error) {
     throw error;
@@ -59,7 +59,8 @@ export const getChefs = async () => {
 
 export const createChef = async (chefData) => {
   try {
-    const response = await api.post('/Admin', chefData);
+    console.log(chefData)
+    const response = await api.post('/Admin/restro-1', chefData);
     return response.data;
   } catch (error) {
     throw error;
@@ -68,7 +69,7 @@ export const createChef = async (chefData) => {
 
 export const deleteChef = async (chefId) => {
   try {
-    const response = await api.delete(`/Admin/${chefId}`);
+    const response = await api.delete(`/Admin/restro-1/${chefId}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -78,7 +79,7 @@ export const deleteChef = async (chefId) => {
 // API functions for Dishes
 export const getDishes = async () => {
   try {
-    const response = await api.get('/Dish');
+    const response = await api.get('/Dish/restro-1');
     return response.data;
   } catch (error) {
     throw error;
@@ -87,7 +88,7 @@ export const getDishes = async () => {
 
 export const createDish = async (dishData) => {
   try {
-    const response = await api.post('/Dish', dishData);
+    const response = await api.post('/Dish/restro-1', dishData);
     return response.data;
   } catch (error) {
     throw error;
@@ -96,7 +97,7 @@ export const createDish = async (dishData) => {
 
 export const updateDish = async (dishId, dishData) => {
   try {
-    const response = await api.put(`/Dish/${dishId}`, dishData);
+    const response = await api.put(`/Dish/restro-1/${dishId}`, dishData);
     return response.data;
   } catch (error) {
     throw error;
@@ -105,7 +106,7 @@ export const updateDish = async (dishId, dishData) => {
 
 export const deleteDish = async (dishId) => {
   try {
-    const response = await api.delete(`/Dish/${dishId}`);
+    const response = await api.delete(`/Dish/restro-1/${dishId}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -115,7 +116,7 @@ export const deleteDish = async (dishId) => {
 // API functions for Orders
 export const getOrders = async () => {
   try {
-    const response = await api.get('/Order');
+    const response = await api.get('/Order/restro-1');
     return response.data;
   } catch (error) {
     throw error;
@@ -124,7 +125,7 @@ export const getOrders = async () => {
 
 export const createOrder = async (orderData) => {
   try {
-    const response = await api.post('/Order', orderData);
+    const response = await api.post('/Order/restro-1', orderData);
     return response.data;
   } catch (error) {
     throw error;
@@ -133,7 +134,7 @@ export const createOrder = async (orderData) => {
 
 export const updateOrderStatus = async (orderId, statusData) => {
   try {
-    const response = await api.put(`/Order/${orderId}`, statusData);
+    const response = await api.put(`/Order/restro-1/${orderId}`, statusData);
     return response.data;
   } catch (error) {
     throw error;
@@ -142,7 +143,7 @@ export const updateOrderStatus = async (orderId, statusData) => {
 
 export const deleteOrder = async (orderId) => {
   try {
-    const response = await api.delete(`/Order/${orderId}`);
+    const response = await api.delete(`/Order/restro-1/${orderId}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -152,7 +153,7 @@ export const deleteOrder = async (orderId) => {
 // API functions for Tables
 export const getTables = async () => {
   try {
-    const response = await api.get('/Table');
+    const response = await api.get('/Table/restro-1');
     return response.data;
   } catch (error) {
     throw error;
@@ -161,7 +162,7 @@ export const getTables = async () => {
 
 export const getTableDetails = async (tableNo) => {
   try {
-    const response = await api.get(`/Table/${tableNo}`);
+    const response = await api.get(`/Table/restro-1/${tableNo}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -170,7 +171,7 @@ export const getTableDetails = async (tableNo) => {
 
 export const updateTable = async (tableNo, tableData) => {
   try {
-    const response = await api.put(`/Table/${tableNo}`, tableData);
+    const response = await api.put(`/Table/restro-1/${tableNo}`, tableData);
     return response.data;
   } catch (error) {
     throw error;
@@ -180,7 +181,7 @@ export const updateTable = async (tableNo, tableData) => {
 // API functions for Customers
 export const getCustomers = async () => {
   try {
-    const response = await api.get('/Customer');
+    const response = await api.get('/Customer/restro-1');
     return response.data;
   } catch (error) {
     throw error;
@@ -189,7 +190,7 @@ export const getCustomers = async () => {
 
 export const getCustomerById = async (customerId) => {
   try {
-    const response = await api.get(`/Customer/${customerId}`);
+    const response = await api.get(`/Customer/restro-1/${customerId}`);
     return response.data;
   } catch (error) {
     throw error;
@@ -198,7 +199,7 @@ export const getCustomerById = async (customerId) => {
 
 export const createCustomer = async (customerData) => {
   try {
-    const response = await api.post('/Customer', customerData);
+    const response = await api.post('/Customer/restro-1', customerData);
     return response.data;
   } catch (error) {
     throw error;
@@ -207,7 +208,7 @@ export const createCustomer = async (customerData) => {
 
 export const updateCustomer = async (customerId, customerData) => {
   try {
-    const response = await api.put(`/Customer/${customerId}`, customerData);
+    const response = await api.put(`/Customer/restro-1/${customerId}`, customerData);
     return response.data;
   } catch (error) {
     throw error;

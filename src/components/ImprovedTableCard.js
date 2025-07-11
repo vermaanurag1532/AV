@@ -77,7 +77,7 @@ function ImprovedTableCard({ table, tableNo }) {
     
     try {
       // API call to update the table status - replace this URL with your actual API endpoint
-      await axios.put(`/api/Table/${table.tableNo}`, {
+      await axios.put(`http://localhost:3000/Table/restro-1/${table.tableNo}`, {
         'Table No': table.tableNo,
         'Customer ID': '',
         'Order Id': ''

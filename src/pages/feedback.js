@@ -26,7 +26,7 @@ function Feedback() {
     setError(null);
     
     try {
-      const response = await fetch('/api/feedback');
+      const response = await fetch('http://localhost:3000/feedback/restro-1');
       if (!response.ok) {
         throw new Error('Failed to fetch feedbacks');
       }
